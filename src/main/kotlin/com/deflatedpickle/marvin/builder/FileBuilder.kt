@@ -57,6 +57,8 @@ data class FileBuilder(
                 i.get().createNewFile()
             }
         }
+        // Setting the lastBuilder here solves an issue with backtracking
+        // Thanks to Zeref#2431 for figuring that out!
         if (last != null) lastBuilder = last
         return lastBuilder!!
     }
