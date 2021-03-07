@@ -30,7 +30,7 @@ data class FileBuilder(
                 File(
                     "${
                     beginFile.get().absolutePath
-                    }\\$name"
+                    }/$name"
                 )
             )
         )
@@ -41,7 +41,7 @@ data class FileBuilder(
     fun dir(name: String): FileBuilder = FileBuilder(
         "${
         beginFile.get().path
-        }\\$name",
+        }/$name",
         this
     )
 
