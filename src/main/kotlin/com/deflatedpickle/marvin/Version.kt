@@ -10,7 +10,7 @@ class Version(
     constructor(
         major: String,
         minor: String,
-        patch: String
+        patch: String = "0"
     ) : this(
         major.toInt(),
         minor.toInt(),
@@ -99,13 +99,15 @@ class VersionProgression(
  */
 @Throws(StringIndexOutOfBoundsException::class)
 fun String.toVersion(): Version =
-    if (this.count { it == '.' } == 2) {
+    if (this.count { it == '.' } in listOf(2, 3)) {
         val split = this.split('.')
         var index = -1
 
         Version(
             major = split[++index],
             minor = split[++index],
-            patch = split[++index]
+            patch = split.getOrNull(++index) ?: "0"
         )
     } else throw StringIndexOutOfBoundsException()
+
+fun v(version: String) = version.toVersion()

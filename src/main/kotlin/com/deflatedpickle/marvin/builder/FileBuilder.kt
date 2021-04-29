@@ -6,30 +6,22 @@ import java.io.File
 
 @Suppress("unused")
 data class FileBuilder(
-    var beginningDirectory: String,
+    var directory: String,
     private var lastBuilder: FileBuilder? = null
-) : Builder<FileBuilder> {
-    private val beginFile: DirectoryNode
-
-    private val fileList =
-            mutableListOf<Builder.Node<File>>()
+) : Builder<File>, NodeHolder<File, FileBuilder> {
+    internal val fileList = mutableListOf<Builder.Node<File>>()
+    internal val firstNode = DirectoryNode(File(directory), this)
 
     init {
-        val directoryNode = DirectoryNode(
-            File(beginningDirectory), this
-        )
-
-        beginFile = directoryNode
-        fileList.add(directoryNode)
+        fileList.add(firstNode)
     }
 
-    @Suppress("unused")
     fun file(name: String): FileBuilder {
         fileList.add(
             FileNode(
                 File(
                     "${
-                    beginFile.get().absolutePath
+                        firstNode.get().absolutePath
                     }/$name"
                 )
             )
@@ -37,10 +29,9 @@ data class FileBuilder(
         return this
     }
 
-    @Suppress("unused")
     fun dir(name: String): FileBuilder = FileBuilder(
         "${
-        beginFile.get().path
+            firstNode.get().absolutePath
         }/$name",
         this
     )
@@ -63,16 +54,20 @@ data class FileBuilder(
         return lastBuilder!!
     }
 
-    internal data class FileNode(
+    override fun getBuilder(): FileBuilder = this
+
+    /*internal*/ data class FileNode(
         private var file: File
     ) : Builder.Node<File> {
         override fun get(): File = this.file
     }
 
-    internal data class DirectoryNode(
+    /*internal*/ data class DirectoryNode(
         private var file: File,
-        var builder: FileBuilder
-    ) : Builder.Node<File> {
+        private var builder: FileBuilder
+    ) : Builder.Node<File>, NodeHolder<File, FileBuilder> {
         override fun get(): File = this.file
+
+        override fun getBuilder(): FileBuilder = this.builder
     }
 }
