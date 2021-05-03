@@ -16,8 +16,19 @@ data class DSLFileNode(
 ) : Builder.Node<File> {
     override fun get(): File = this.file
 
-    operator fun String.unaryPlus(): File = file.apply { appendText("${this@unaryPlus}\n") }
-    operator fun ByteArray.unaryMinus(): File = file.apply { appendBytes(this@unaryMinus) }
+    operator fun String.unaryPlus(): File = file.apply {
+        try {
+            appendText("${this@unaryPlus}\n")
+        } catch (e: Exception) {
+        }
+    }
+
+    operator fun ByteArray.unaryMinus(): File = file.apply {
+        try {
+            appendBytes(this@unaryMinus)
+        } catch (e: Exception) {
+        }
+    }
 }
 
 fun FileBuilder.fileNode(name: String): DSLFileNode =
@@ -28,15 +39,19 @@ fun FileBuilder.fileNode(name: String): DSLFileNode =
             }/$name"
         )
     ).apply {
-        fileList.add(this)
+        nodeList.add(this)
     }
 
 fun FileBuilder.dirNode(name: String): FileBuilder.DirectoryNode = dir(name).firstNode
 
 fun cabinet(
     dir: String,
+    build: Boolean = true,
     block: (@FileDSL FileBuilder).() -> Unit
-) = FileBuilder(dir).apply(block).build()
+) = FileBuilder(dir).apply(block).apply {
+    if (build) build()
+    else makelessBuild()
+}
 
 fun NodeHolder<File, FileBuilder>.file(
     name: String,
@@ -45,5 +60,9 @@ fun NodeHolder<File, FileBuilder>.file(
 
 fun NodeHolder<File, FileBuilder>.dir(
     name: String,
+    build: Boolean = true,
     block: (@FileDSL FileBuilder.DirectoryNode).() -> Unit
-) = this.builder.dirNode(name).apply(block).builder.build()
+) = this.builder.dirNode(name).apply(block).builder.apply {
+    if (build) build()
+    else makelessBuild()
+}

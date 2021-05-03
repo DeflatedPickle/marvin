@@ -18,6 +18,8 @@ class Version(
     )
 
     companion object {
+        val ZERO = Version(0, 0, 0)
+
         fun fromString(version: String): Version {
             val split = version.split(".")
             return Version(
@@ -99,7 +101,7 @@ class VersionProgression(
  */
 @Throws(StringIndexOutOfBoundsException::class)
 fun String.toVersion(): Version =
-    if (this.count { it == '.' } in listOf(2, 3)) {
+    if (this.count { it == '.' } in listOf(1, 2)) {
         val split = this.split('.')
         var index = -1
 
