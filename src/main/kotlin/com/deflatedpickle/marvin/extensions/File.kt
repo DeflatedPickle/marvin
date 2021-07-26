@@ -12,6 +12,9 @@ import java.nio.file.attribute.PosixFileAttributes
 import java.nio.file.attribute.PosixFilePermission
 import java.nio.file.attribute.UserPrincipal
 
+operator fun File.div(next: File) = this.resolve(next)
+operator fun File.div(next: String) = this.resolve(next)
+
 fun File.size() = Files.size(this.toPath())
 
 // fun File.isDirectory() = Files.isDirectory(this.toPath())
