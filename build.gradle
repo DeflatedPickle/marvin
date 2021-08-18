@@ -8,6 +8,7 @@ plugins {
 group 'com.deflatedpickle'
 archivesBaseName = 'marvin'
 version '1.0.0'
+sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
 
 repositories {
     jcenter()
