@@ -4,6 +4,7 @@ package com.deflatedpickle.marvin.builder;
 
 /**
  * A base for creating builder patterns
+ *
  * @param <I> The value type
  */
 // TODO: Add a function to return a node stack
@@ -11,6 +12,7 @@ package com.deflatedpickle.marvin.builder;
 public interface Builder<I> {
   /**
    * Finishes this builder
+   *
    * @return A builder, either this one or a new one
    */
   @SuppressWarnings("unused")
@@ -18,11 +20,13 @@ public interface Builder<I> {
 
   /**
    * A node element used for builders
+   *
    * @param <T> The type of information
    */
   interface Node<T> {
     /**
      * An instance of type {@link T}
+     *
      * @return The information
      */
     T get();

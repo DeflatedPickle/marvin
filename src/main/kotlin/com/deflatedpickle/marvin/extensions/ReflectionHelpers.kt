@@ -1,3 +1,5 @@
+/* Copyright (c) 2021 DeflatedPickle under the MIT license */
+
 package com.deflatedpickle.marvin.extensions
 
 inline fun <reified T : Any> Any.get(string: String): T {
