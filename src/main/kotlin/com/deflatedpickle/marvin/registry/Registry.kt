@@ -7,6 +7,12 @@ package com.deflatedpickle.marvin.registry
 open class Registry<K, V> {
     private val items = mutableMapOf<K, V>()
 
+    val keys: MutableCollection<K>
+        get() = items.keys
+
+    val values: MutableCollection<V>
+        get() = items.values
+
     operator fun set(key: K, value: V) {
         this.items[key] = value
     }
