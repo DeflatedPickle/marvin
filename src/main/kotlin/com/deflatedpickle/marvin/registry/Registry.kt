@@ -13,6 +13,8 @@ open class Registry<K, V> {
     val values: MutableCollection<V>
         get() = items.values
 
+    operator fun iterator() = items.iterator()
+
     operator fun set(key: K, value: V) {
         this.items[key] = value
     }
