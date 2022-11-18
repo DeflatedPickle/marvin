@@ -13,7 +13,7 @@ import java.io.File
 @Serializer(forClass = File::class)
 object FileSerializer : KSerializer<File> {
     override val descriptor = PrimitiveSerialDescriptor(
-        serialName = "Mode",
+        serialName = "File",
         kind = PrimitiveKind.STRING,
     )
 
