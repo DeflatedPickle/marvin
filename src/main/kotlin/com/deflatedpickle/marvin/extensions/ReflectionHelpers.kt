@@ -2,7 +2,7 @@
 
 package com.deflatedpickle.marvin.extensions
 
-inline fun <reified T : Any> Any.get(string: String): T {
+inline fun <reified T : Any?> Any.get(string: String): T {
     val getterPrefix = when (T::class) {
         // Boolean::class -> "is"
         else -> "get"
@@ -16,7 +16,7 @@ inline fun <reified T : Any> Any.get(string: String): T {
     return method.invoke(this) as T
 }
 
-inline fun <reified T : Any> Any.set(string: String, value: T) {
+inline fun <reified T : Any?> Any.set(string: String, value: T) {
     val setterPrefix = when (T::class) {
         // Boolean::class -> "has"
         else -> "set"
