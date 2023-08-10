@@ -1,8 +1,8 @@
 @file:Suppress("unused")
 
-package com.deflatedpickle.marvin.function
+package com.deflatedpickle.marvin.functions
 
-import com.deflatedpickle.marvin.extensions.note
+import com.deflatedpickle.marvin.functions.extensions.note
 import kotlin.math.max
 
 @Throws(RuntimeException::class)

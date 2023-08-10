@@ -1,6 +1,6 @@
 /* Copyright (c) 2021 DeflatedPickle under the MIT license */
 
-package com.deflatedpickle.marvin.extensions
+package com.deflatedpickle.marvin.functions.extensions
 
 inline fun <reified T : Any?> Any.get(string: String): T {
     val getterPrefix = when (T::class) {

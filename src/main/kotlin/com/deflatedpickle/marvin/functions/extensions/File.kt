@@ -2,7 +2,7 @@
 
 @file:Suppress("unused")
 
-package com.deflatedpickle.marvin.extensions
+package com.deflatedpickle.marvin.functions.extensions
 
 import java.io.File
 import java.nio.file.Files

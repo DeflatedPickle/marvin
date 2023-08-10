@@ -1,7 +1,7 @@
 package com.deflatedpickle.marvin.serializer
 
-import com.deflatedpickle.marvin.extensions.readBase64
-import com.deflatedpickle.marvin.extensions.writeBase64
+import com.deflatedpickle.marvin.functions.extensions.readBase64
+import com.deflatedpickle.marvin.functions.extensions.writeBase64
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializer

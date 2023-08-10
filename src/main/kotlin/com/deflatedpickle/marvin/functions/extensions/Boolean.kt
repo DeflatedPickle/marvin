@@ -1,6 +1,6 @@
 /* Copyright (c) 2021 DeflatedPickle under the MIT license */
 
-package com.deflatedpickle.marvin.extensions
+package com.deflatedpickle.marvin.functions.extensions
 
 fun Boolean.toInt() = if (this) 1 else 0
 

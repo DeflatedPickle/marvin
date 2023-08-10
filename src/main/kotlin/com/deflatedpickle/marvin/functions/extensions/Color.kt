@@ -1,4 +1,4 @@
-package com.deflatedpickle.marvin.extensions
+package com.deflatedpickle.marvin.functions.extensions
 
 import java.awt.Color
 import kotlin.math.max
