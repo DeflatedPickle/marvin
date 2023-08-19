@@ -21,14 +21,14 @@ data class DSLFileNode(
     operator fun String.unaryPlus(): File = file.apply {
         try {
             appendText("${this@unaryPlus}\n")
-        } catch (e: Exception) {
+        } catch (_: Exception) {
         }
     }
 
     operator fun ByteArray.unaryMinus(): File = file.apply {
         try {
             appendBytes(this@unaryMinus)
-        } catch (e: Exception) {
+        } catch (_: Exception) {
         }
     }
 }
